@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "Session": {
+      "collection": "sessions",
+      "fields": {
+        "sessionId": { "type": "string", "description": "Unique session identifier e.g. SBS-SESS-XYZ" },
+        "ownerId": { "type": "string", "description": "Firebase Auth UID of session creator (anonymous borrower or logged-in user)" },
+        "currentStep": { "type": "number", "description": "Current notebook step (0-6)" },
+        "maxStepReached": { "type": "number", "description": "Furthest step unlocked in the journey" },
+        "language": { "type": "string", "description": "Language code 'en' or 'hi'" },
+        "activeOfferId": { "type": "string", "description": "ID of the approved loan offer being reviewed" },
+        "comprehensionAnswers": { "type": "object", "description": "Key-value map of quiz question index to chosen option" },
+        "comprehensionPassed": { "type": "boolean", "description": "Whether borrower passed understanding checkpoint" },
+        "practisedScenarios": { "type": "array", "description": "Array of scenario IDs simulated in Step 4" },
+        "acknowledgedPermissions": { "type": "object", "description": "Map of permission ID to boolean acknowledgement" },
+        "consentChoice": { "type": "string", "description": "'pending', 'consented', or 'declined'" },
+        "consentTimestamp": { "type": "string", "description": "ISO timestamp or formatted date of decision" },
+        "receiptId": { "type": "string", "description": "Generated receipt reference code" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" }
+      }
+    },
+    "ApprovedOffer": {
+      "collection": "approvedOffers",
+      "fields": {
+        "id": { "type": "string", "description": "Unique offer ID e.g. offer-kfs-001" },
+        "offerCode": { "type": "string", "description": "Official KFS code" },
+        "documentTitle": { "type": "string", "description": "Title of loan document" },
+        "documentVersion": { "type": "string", "description": "Version identifier e.g. v1.0" },
+        "lenderName": { "type": "string", "description": "Named regulated lender" },
+        "isFictional": { "type": "boolean", "description": "True for prototype fictional disclosures" },
+        "sanctionedAmountPaise": { "type": "number", "description": "Principal amount in integer paise" },
+        "upfrontFeePaise": { "type": "number", "description": "Processing fee in integer paise" },
+        "netDisbursementPaise": { "type": "number", "description": "Net cash disbursed in paise" },
+        "totalScheduledRepaymentPaise": { "type": "number", "description": "Sum of all scheduled EMIs in paise" },
+        "interestRateDisclosed": { "type": "string", "description": "Stated interest rate text" },
+        "aprDisclosed": { "type": "string", "description": "Disclosed APR" },
+        "isAprVerified": { "type": "boolean", "description": "Whether APR calculation has been verified" },
+        "instalments": { "type": "array", "description": "List of instalment schedules" },
+        "latePaymentTerms": { "type": "string", "description": "Late fee condition text" },
+        "autoDebitTerms": { "type": "string", "description": "Auto-debit rules and bounce charges" },
+        "coolingOffDays": { "type": "number", "description": "Statutory cooling off duration" },
+        "coolingOffDetails": { "type": "string", "description": "Cancellation and refund rules" },
+        "dataPermissions": { "type": "array", "description": "Disclosed data permissions" },
+        "complaintOfficer": { "type": "object", "description": "Nodal grievance officer contacts" },
+        "excerpts": { "type": "array", "description": "Citations referencing original document pages" },
+        "validationStatus": { "type": "string", "description": "'valid', 'needs_review', or 'approved'" },
+        "validationNotes": { "type": "array", "description": "Audit notes and arithmetic checks" },
+        "approvedBy": { "type": "string", "description": "Reviewer email or UID who approved" },
+        "approvedAt": { "type": "string", "description": "Timestamp of reviewer sign-off" },
+        "documentHash": { "type": "string", "description": "SHA-256 hash of processed document text" }
+      }
+    },
+    "User": {
+      "collection": "users",
+      "fields": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User full name" },
+        "role": { "type": "string", "description": "'reviewer' or 'borrower'" },
+        "isAnonymous": { "type": "boolean", "description": "True if guest borrower demo session" },
+        "lastSeenAt": { "type": "string", "description": "Last activity timestamp" }
+      }
+    }
+  }
+}

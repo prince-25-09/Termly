@@ -1,0 +1,6 @@
+{
+  "name": "Termly",
+  "description": "Understand first. Decide confidently. A financial understanding prototype for borrowers to inspect key loan terms, rehearse real scenarios, and verify final terms before consenting.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
